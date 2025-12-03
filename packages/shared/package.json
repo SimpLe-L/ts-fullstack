@@ -1,0 +1,22 @@
+{
+	"name": "@repo/shared",
+	"version": "1.0.0",
+	"description": "",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsdown"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.44.7",
+		"drizzle-zod": "^0.8.3"
+	},
+	"devDependencies": {
+		"tsdown": "0.17.0-beta.5"
+	}
+}
