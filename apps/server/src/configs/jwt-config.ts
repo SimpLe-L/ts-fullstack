@@ -1,0 +1,3 @@
+export const REFRESH_TOKEN_EXPIRES_DAYS = 7;
+
+export const ACCESS_TOKEN_EXPIRES_MINUTES = 15;

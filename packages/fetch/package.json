@@ -1,0 +1,22 @@
+{
+  "name": "@repo/fetch",
+  "version": "1.0.0",
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "dependencies": {
+    "@repo/shared": "workspace:^",
+    "@tanstack/react-query": "^5.90.11",
+    "axios": "^1.13.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.4"
+  }
+}
