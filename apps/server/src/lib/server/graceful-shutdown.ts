@@ -2,7 +2,7 @@ import type { ServerType } from "@hono/node-server";
 
 import logger from "@/lib/logger";
 
-import { shutdownJobSystem } from "./job-system";
+// import { shutdownJobSystem } from "./job-system";
 
 export async function setupGracefulShutdown(server: ServerType): Promise<void> {
   const gracefulShutdown = async (signal: string) => {
@@ -15,7 +15,7 @@ export async function setupGracefulShutdown(server: ServerType): Promise<void> {
       });
     });
 
-    await shutdownJobSystem();
+    // await shutdownJobSystem();
 
     logger.info("[app]: shutdown complete, exiting");
     process.exit(0);

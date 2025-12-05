@@ -3,11 +3,11 @@ import { API_ADMIN_PATH, API_BASE_PATH, DOC_ENDPOINT } from "@/configs";
 import type { AppConfig } from "./types";
 
 export const APP_CONFIG: AppConfig[] = [
-  {
-    name: "admin",
-    title: "admin apis",
-    token: "your-admin-token",
-  },
+  // {
+  //   name: "admin",
+  //   title: "admin apis",
+  //   token: "your-admin-token",
+  // },
   {
     name: "client",
     title: "app apis",
@@ -27,4 +27,4 @@ export const SCALAR_CONFIG = {
   defaultHttpClient: { targetKey: "js", clientKey: "fetch" },
 } as const;
 
-export { API_ADMIN_PATH, API_BASE_PATH, DOC_ENDPOINT };
+export { API_BASE_PATH, DOC_ENDPOINT };

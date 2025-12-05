@@ -1,6 +1,7 @@
 import type { ServerType } from "@hono/node-server";
 
 import { serve } from "@hono/node-server";
+import env from "@/env";
 
 import logger from "@/lib/logger";
 
@@ -14,6 +15,7 @@ type FetchApp = {
 
 
 export async function startServerWithRetry(app: FetchApp, port: number, maxRetries = 5, retryDelay = 1000): Promise<ServerType> {
+
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
     let serverInstance: ServerType | undefined;
 
@@ -33,6 +35,9 @@ export async function startServerWithRetry(app: FetchApp, port: number, maxRetri
         serverInstance.once("error", errorHandler);
         serverInstance.once("listening", listeningHandler);
       });
+
+      const message = ` 🚀 server start success → (http://localhost:${env.PORT}) `;
+      logger.info(message);
 
       return server;
     }

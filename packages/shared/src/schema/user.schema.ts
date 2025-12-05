@@ -5,7 +5,6 @@ import {
 	createSelectSchema,
 	createUpdateSchema,
 } from "drizzle-zod";
-import type { z } from "zod";
 
 export const user = pgTable("user", {
 	id: serial("id").primaryKey(),
@@ -16,8 +15,8 @@ export const user = pgTable("user", {
 });
 
 export const UserSelectSchema = createSelectSchema(user);
-export type UserSelect = z.infer<typeof UserSelectSchema>;
+export type UserSelect = typeof UserSelectSchema
 export const UserInsertSchema = createInsertSchema(user);
-export type UserInsert = z.infer<typeof UserInsertSchema>;
+export type UserInsert = typeof UserInsertSchema;
 export const UserUpdateSchema = createUpdateSchema(user);
-export type UserUpdate = z.infer<typeof UserUpdateSchema>;
+export type UserUpdate = typeof UserUpdateSchema;
