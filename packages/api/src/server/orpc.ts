@@ -1,0 +1,50 @@
+import { os, implement } from '@orpc/server';
+import type { DatabaseInstance } from '@repo/db';
+import { appContract } from '../contracts';
+
+export const createORPCContext = async ({
+  db,
+}: {
+  db: DatabaseInstance;
+  headers: Headers;
+}): Promise<{
+  db: DatabaseInstance;
+}> => {
+  return {
+    db,
+  };
+};
+
+const timingMiddleware = os.middleware(async ({ next, path }) => {
+  const start = Date.now();
+  let waitMsDisplay = '';
+  if (process.env.NODE_ENV !== 'production') {
+    // artificial delay in dev 100-500ms
+    const waitMs = Math.floor(Math.random() * 400) + 100;
+    await new Promise((resolve) => setTimeout(resolve, waitMs));
+    waitMsDisplay = ` (artificial delay: ${waitMs}ms)`;
+  }
+  const result = await next();
+  const end = Date.now();
+
+  console.log(
+    `\t[RPC] /${path.join('/')} executed after ${end - start}ms${waitMsDisplay}`,
+  );
+  return result;
+});
+
+const base = implement(appContract);
+
+export const publicProcedure = base
+  .$context<Awaited<ReturnType<typeof createORPCContext>>>()
+  .use(timingMiddleware);
+
+export const protectedProcedure = publicProcedure.use(
+  ({ context, next, errors }) => {
+
+    return next({
+      context: {
+      },
+    });
+  },
+);

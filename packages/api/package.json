@@ -1,0 +1,37 @@
+{
+  "name": "@repo/api",
+  "type": "module",
+  "exports": {
+    "./client": {
+      "types": "./dist/src/client/index.d.ts",
+      "default": "./src/client/index.ts"
+    },
+    "./server": {
+      "types": "./dist/src/server/index.d.ts",
+      "default": "./src/server/index.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@orpc/client": "^1.12.2",
+    "@orpc/contract": "^1.12.2",
+    "@orpc/openapi": "^1.12.2",
+    "@orpc/openapi-client": "^1.12.2",
+    "@orpc/server": "^1.12.2",
+    "@orpc/tanstack-query": "^1.12.2",
+    "@orpc/valibot": "^1.12.2",
+    "@repo/db": "workspace:^",
+    "url-join": "^5.0.0",
+    "valibot": "catalog:"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}

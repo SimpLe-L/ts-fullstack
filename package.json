@@ -1,0 +1,13 @@
+{
+  "name": "repo",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "format": "biome format --write",
+    "lint": "biome check",
+    "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.8"
+  }
+}
