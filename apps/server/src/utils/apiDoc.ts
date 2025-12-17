@@ -49,28 +49,18 @@ export const generateRootHtml = (webUrl: string, serverUrl: string) => `
       </style>
     </head>
     <body>
-      <h1>RT Stack Backend Server</h1>
+      <h1>Backend Server</h1>
       <hr />
       <h2>Resources</h2>
       <ul>
         <li>
-          <a href="https://github.com/nktnet1/rt-stack" target="_blank" rel="noreferrer">
-            GitHub (source code)
-          </a>
-        </li>
-        <li>
-          <a href="${webUrl}" target="_blank" rel="noreferrer">
-            Web (frontend)
-          </a>
-        </li>
-        <li>
           <a href="${serverUrl}/api" target="_blank" rel="noreferrer">
-            API - OpenAPI Reference (Scalar)
+            API - public OpenAPI Reference
           </a>
         </li>
         <li>
           <a href="${serverUrl}/api/auth/reference" target="_blank" rel="noreferrer">
-            Auth - OpenAPI Reference (Scalar)
+            API - auth OpenAPI Reference
           </a>
         </li>
       </ul>

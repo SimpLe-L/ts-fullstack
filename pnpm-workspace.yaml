@@ -4,7 +4,7 @@ packages:
 
 catalog:
   tsdown: 0.17.2
-  tsx: ^4.21.0
+  tsx: 4.21.0
   typescript: 5.9.3
   valibot: 1.2.0
   zod: 4.1.13

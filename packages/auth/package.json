@@ -1,0 +1,23 @@
+{
+  "name": "@repo/auth",
+  "type": "module",
+  "exports": {
+    "./client": "./src/client.ts",
+    "./server": "./src/server.ts"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "auth:generate": "pnpx @better-auth/cli generate --config ./src/cli-config.ts --output ../db/src/schemas/auth.ts"
+  },
+  "packageManager": "pnpm@10.25.0",
+  "dependencies": {
+    "@repo/db": "workspace:*",
+    "better-auth": "^1.4.7",
+    "url-join": "^5.0.0"
+  },
+  "devDependencies": {
+    "tsdown": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  }
+}

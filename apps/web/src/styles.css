@@ -132,7 +132,17 @@ code {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@theme {
+  --text-green: #10b981;
+  --text-red: #ef4444;
+}
+
+@utility text-tk-* {
+  color: --value(--text-*);
 }

@@ -9,14 +9,17 @@ import * as v from 'valibot';
 import type { DatabaseInstance } from '@repo/db';
 import { createORPCContext } from './orpc';
 import { appRouter } from './router';
+import type { AuthInstance } from '@repo/auth/server';
 
 export type AppRouter = typeof appRouter;
 
 export const createApi = ({
+  auth,
   db,
   serverUrl,
   apiPath,
 }: {
+  auth: AuthInstance;
   db: DatabaseInstance;
   serverUrl: string;
   apiPath: `/${string}`;
@@ -25,12 +28,12 @@ export const createApi = ({
     plugins: [
       new StrictGetMethodPlugin(),
       new OpenAPIReferencePlugin({
-        docsTitle: 'RT Stack | API Reference',
+        docsTitle: 'API Reference',
         docsProvider: 'scalar',
         schemaConverters: [new ValibotToJsonSchemaConverter()],
         specGenerateOptions: {
           info: {
-            title: 'RT Stack API',
+            title: 'API Reference',
             version: '1.0.0',
           },
           servers: [{ url: urlJoin(serverUrl, apiPath) }],
@@ -64,6 +67,7 @@ export const createApi = ({
         prefix: apiPath,
         context: await createORPCContext({
           db,
+          auth,
           headers: request.headers,
         }),
       });

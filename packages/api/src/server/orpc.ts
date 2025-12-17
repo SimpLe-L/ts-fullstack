@@ -1,17 +1,26 @@
 import { os, implement } from '@orpc/server';
 import type { DatabaseInstance } from '@repo/db';
 import { appContract } from '../contracts';
+import type { AuthInstance } from '@repo/auth/server';
 
 export const createORPCContext = async ({
+  auth,
   db,
+  headers
 }: {
+  auth: AuthInstance;
   db: DatabaseInstance;
   headers: Headers;
 }): Promise<{
   db: DatabaseInstance;
+  session: AuthInstance['$Infer']['Session'] | null;
 }> => {
+  const session = await auth.api.getSession({
+    headers,
+  });
   return {
     db,
+    session,
   };
 };
 

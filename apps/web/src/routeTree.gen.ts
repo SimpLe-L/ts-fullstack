@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PostIndexRouteImport } from './routes/post/index'
+import { Route as LoginIndexRouteImport } from './routes/login/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,30 +23,39 @@ const PostIndexRoute = PostIndexRouteImport.update({
   path: '/post/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginIndexRoute = LoginIndexRouteImport.update({
+  id: '/login/',
+  path: '/login/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginIndexRoute
   '/post': typeof PostIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginIndexRoute
   '/post': typeof PostIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login/': typeof LoginIndexRoute
   '/post/': typeof PostIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/post'
+  fullPaths: '/' | '/login' | '/post'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/post'
-  id: '__root__' | '/' | '/post/'
+  to: '/' | '/login' | '/post'
+  id: '__root__' | '/' | '/login/' | '/post/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginIndexRoute: typeof LoginIndexRoute
   PostIndexRoute: typeof PostIndexRoute
 }
 
@@ -65,11 +75,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login/': {
+      id: '/login/'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginIndexRoute: LoginIndexRoute,
   PostIndexRoute: PostIndexRoute,
 }
 export const routeTree = rootRouteImport

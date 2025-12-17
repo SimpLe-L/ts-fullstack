@@ -14,9 +14,6 @@
   "scripts": {
     "build": "tsdown"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@orpc/client": "^1.12.2",
     "@orpc/contract": "^1.12.2",
@@ -25,6 +22,7 @@
     "@orpc/server": "^1.12.2",
     "@orpc/tanstack-query": "^1.12.2",
     "@orpc/valibot": "^1.12.2",
+    "@repo/auth": "workspace:*",
     "@repo/db": "workspace:^",
     "url-join": "^5.0.0",
     "valibot": "catalog:"

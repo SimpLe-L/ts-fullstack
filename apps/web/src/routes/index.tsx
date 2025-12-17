@@ -1,12 +1,38 @@
-import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({ component: App })
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { authClient } from '@/integrations/tanstack-query/authClient';
 
-function App() {
+export const Route = createFileRoute('/')({
+  component: RouteComponent,
+});
 
+function RouteComponent() {
+
+  const { data: session, isPending } = authClient.useSession();
+
+  console.log('session', session);
   return (
-    <div className="min-h-screen ">
-      <h1>nihap</h1>
+    <div className="mt-1">
+      {session?.user && (
+        <>
+          <div className="flex flex-col mb-5 bg-elevated p-3 rounded-lg">
+            <div>
+              Welcome, <span className="font-bold">{session.user.name}</span>!
+            </div>
+
+          </div>
+        </>
+      )}
+
+      {!session?.user && (
+        <div className="mt-4">
+          Please{' '}
+          <Link to="/login" className="underline font-bold">
+            log in
+          </Link>
+          .
+        </div>
+      )}
     </div>
-  )
+  );
 }

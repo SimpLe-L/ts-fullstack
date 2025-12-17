@@ -13,6 +13,8 @@
   },
   "scripts": {
     "build": "tsdown",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
     "push": "pnpm drizzle-kit push",
     "studio": "pnpm drizzle-kit studio"
   },
